@@ -1,14 +1,22 @@
+import { useState } from "react";
 import SearchBar from "../shared/search-bar";
+import PokemonList from "./PokemonList";
+import { NextPage } from "next";
 
-const PokemonSearch: React.FC = ({ props }: any) => {
+type PokemonSectionProps = {
+  pokemonData: any;
+};
+
+const PokemonSearch = ({ pokemonData }: PokemonSectionProps) => {
+  console.log(pokemonData);
   return (
     <>
-      <div className="flex flex-col w-full justify-center items-center p-12 self-end place-self-end">
-        <div className="flex flex-row self-end mb-12">
+      <div className="flex flex-col h-full w-full justify-center items-center p-12 self-end place-self-end overflow-y-scroll">
+        <div className="flex flex-row self-end mb-6">
           <SearchBar />
         </div>
-        <div className="text-black">
-          <h1>Pokemon List</h1>
+        <div className="text-black w-full h-full">
+          <PokemonList listData={pokemonData.results} />
         </div>
       </div>
     </>
