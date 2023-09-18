@@ -19,9 +19,10 @@ const config: Config = {
       colors: {
         main: "#566CD6",
         buttons: "#7789DF",
-        text: "#40415E",
+        mainText: "#40415E",
         gradientStart: "#F2F4FF",
         gradientEnd: "#FBFCFF",
+        searchBarShadow: "#566CD6",
       },
     },
   },

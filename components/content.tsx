@@ -1,13 +1,13 @@
 import { NextPage } from "next";
 import { HTMLAttributes } from "react";
 
-type Props = {
+type ContentProps = {
   componentProp: React.ReactNode;
 };
 
-const Content: React.FC<Props> = ({ componentProp }) => {
+const Content: React.FC<ContentProps> = ({ componentProp }) => {
   return (
-    <div className="h-16 bg-gradient-to-b from-gradientStart to-gradientEnd">
+    <div className="h-screen bg-gradient-to-b from-gradientStart to-gradientEnd">
       {componentProp}
     </div>
   );
