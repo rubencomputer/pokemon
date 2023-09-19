@@ -6,6 +6,7 @@ import NextImage from "next/image";
 import { PokemonType } from "pokenode-ts";
 import styles from "../../styles/components/shared/pokemonCard.module.css";
 import Link from "next/link";
+import { firstUpperCase } from "@/functions/useful_stuff";
 
 type PokemonCardProps = {
   name: string;
@@ -17,13 +18,11 @@ type PokemonCardProps = {
 const PokemonCard = ({ name, number, picture, types }: PokemonCardProps) => {
   const processedPokemonTypes = [];
 
-  console.log(types);
-
   return (
     <Card className="m-3 p-12 h-96 flex flex-col items-center">
-      <h1 className="text-mainText font-bold text-2xl ">{`${name
-        .charAt(0)
-        .toUpperCase()}${name.slice(1)}`}</h1>
+      <h1 className="text-mainText font-bold text-2xl ">{`${firstUpperCase(
+        name
+      )}`}</h1>
       <span className="text-xl">{number}</span>
       <Image src={picture} width={230} height={230}></Image>
       <div className="flex flex-row justify-evenly">
@@ -35,7 +34,7 @@ const PokemonCard = ({ name, number, picture, types }: PokemonCardProps) => {
               } text-sm pl-3 pr-3 m-1 rounded-2xl`}
               key={index}
             >
-              {type.name}
+              {firstUpperCase(type.name)}
             </p>
           );
         })}
