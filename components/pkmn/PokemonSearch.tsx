@@ -8,7 +8,7 @@ type PokemonSectionProps = {
 };
 
 const PokemonSearch = ({ pokemonData }: PokemonSectionProps) => {
-  console.log(pokemonData);
+  // console.log(pokemonData);
   return (
     <>
       <div className="flex flex-col h-full w-full justify-center items-center p-12 self-end place-self-end overflow-y-scroll">
@@ -16,7 +16,7 @@ const PokemonSearch = ({ pokemonData }: PokemonSectionProps) => {
           <SearchBar />
         </div>
         <div className="text-black w-full h-full">
-          <PokemonList listData={pokemonData.results} />
+          <PokemonList listData={pokemonData} />
         </div>
       </div>
     </>
