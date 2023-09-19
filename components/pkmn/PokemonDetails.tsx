@@ -17,10 +17,7 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({
   console.log(pokemonData);
   return (
     <>
-      <div className="flex flex-col h-full w-full justify-center items-center p-12 pt-5 self-end place-self-end overflow-y-scroll">
-        <div className="flex flex-row self-end mb-6">
-          <SearchBar />
-        </div>
+      <div className="flex flex-col h-full w-full justify-center items-center p-12 pt-5 self-end place-self-end">
         <div className="text-black w-full h-full grid grid-cols-3 gap-8">
           <Card className="p-12 h-3/5">
             <div className="flex flex-col justify-center items-center">

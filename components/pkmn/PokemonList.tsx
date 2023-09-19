@@ -2,9 +2,10 @@ import { Card } from "@nextui-org/react";
 import PokemonCard from "./PokemonCard";
 import { Pokemon } from "pokenode-ts";
 import Link from "next/link";
+import { useMyContext } from "@/providers/PokeContext";
 
 type ListProps = {
-  listData: any;
+  listData?: any;
 };
 
 type pokemonData = {
@@ -12,24 +13,27 @@ type pokemonData = {
   url: string;
 };
 
-const PokemonList = ({ listData }: ListProps) => {
-  // console.log(listData);
+const PokemonList = ({}: ListProps) => {
+  const { data } = useMyContext();
+
   return (
     <>
-      <div className="grid grid-cols-3 gap-1 overflow-y-clip">
-        {listData.map((pkmn: Pokemon, index: number) => {
-          return (
-            <Link href={`/pkmn/${pkmn.id}`}>
-              <PokemonCard
-                name={pkmn.name}
-                number={pkmn.id.toString().padStart(3, "0")}
-                picture={pkmn.sprites.other?.["official-artwork"].front_default}
-                types={pkmn.types}
-                key={index}
-              />
-            </Link>
-          );
-        })}
+      <div className="grid grid-cols-3 gap-2 overflow-y-clip">
+        {Array.isArray(data) &&
+          data.map((pkmn: Pokemon, index: number) => {
+            return (
+              <Link href={`/pkmn/${pkmn.id}`} key={index}>
+                <PokemonCard
+                  name={pkmn.name}
+                  number={pkmn.id.toString().padStart(3, "0")}
+                  picture={
+                    pkmn.sprites.other?.["official-artwork"].front_default
+                  }
+                  types={pkmn.types}
+                />
+              </Link>
+            );
+          })}
       </div>
     </>
   );

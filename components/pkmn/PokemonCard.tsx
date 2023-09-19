@@ -19,7 +19,7 @@ const PokemonCard = ({ name, number, picture, types }: PokemonCardProps) => {
   const processedPokemonTypes = [];
 
   return (
-    <Card className="m-3 p-12 h-96 flex flex-col items-center">
+    <Card className="m-3 p-12 h-128 flex flex-col items-center justify-center">
       <h1 className="text-mainText font-bold text-2xl ">{`${firstUpperCase(
         name
       )}`}</h1>

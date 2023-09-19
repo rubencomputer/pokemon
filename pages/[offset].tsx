@@ -1,7 +1,9 @@
 import { Inter } from "next/font/google";
 import Sidebar from "@/components/sidebar";
-import PokemonSearch from "@/components/pkmn/PokemonSearch";
 import { PokemonClient } from "pokenode-ts";
+import { useState } from "react";
+import SearchBar from "@/components/shared/search-bar";
+import PokemonList from "@/components/pkmn/PokemonList";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,11 +12,11 @@ export const getServerSideProps = async (context: any) => {
 
   const startingPokemon = offset * 12;
 
-  const pokemonData = await fetchPokemonData(startingPokemon);
+  const detailedPokemonData = await fetchPokemonData(startingPokemon);
 
   return {
     props: {
-      pokemonData,
+      detailedPokemonData,
       startingPokemon,
     },
   };
@@ -38,26 +40,37 @@ const fetchPokemonData = async (offset = 0) => {
 const validateOffset = async (client: PokemonClient, offset: number) => {
   //Trae la cuenta del ultimo posible pokemon
   const { count } = await client.listPokemons(1, 1);
-  if (offset >= count) {
+  if (offset >= count || offset < 0) {
     return 0;
   } else {
     return offset;
   }
 };
 
-export default function Home({ pokemonData, startingPokemon }: any) {
+export default function Home({ detailedPokemonData, startingPokemon }: any) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [pokemonData, setPokemonData] = useState(detailedPokemonData);
+
+  console.log(detailedPokemonData);
+
+  const handleSearch = (e: any) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSubmit = async (e: any) => {
+    const pokeApi = new PokemonClient();
+
+    try {
+      const response = await pokeApi.getPokemonByName(searchTerm.toLowerCase());
+      setPokemonData([response]);
+    } catch (e) {
+      setPokemonData(detailedPokemonData);
+    }
+  };
+
   return (
-    <div
-      className={`flex min-h-screen flex-row justify-between ${inter.className}`}
-    >
-      <Sidebar
-        userLevel={1}
-        userName="ASHK123"
-        userMotto="Work hard on your test"
-      ></Sidebar>
-      <div className="bg-white text-text w-full h-screen bg-gradient-to-b from-gradientStart to-gradientEnd">
-        <PokemonSearch pokemonData={pokemonData} />
-      </div>
+    <div className="text-black w-full h-full">
+      <PokemonList listData={pokemonData} />
     </div>
   );
 }
