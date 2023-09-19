@@ -1,7 +1,5 @@
 import { Avatar, Image } from "@nextui-org/react";
-import { NextPage } from "next";
 import LogOut from "./log-out";
-import { type } from "os";
 
 type SidebarProps = {
   userName: string;
@@ -30,13 +28,10 @@ const Sidebar = ({
           width={200}
           height={125}
           alt="Pokemon Logo"
-          src="logo.png"
+          src="/logo.png"
           className="mb-16"
         ></Image>
-        <Avatar
-          className="w-48 h-48 mb-8"
-          src={currentUser.userAvatar}
-        ></Avatar>
+        <Avatar className="w-48 h-48 mb-8" src="/avatar.png"></Avatar>
         <h1 className="text-2xl font-bold tracking-wide">
           {currentUser.userName}
         </h1>

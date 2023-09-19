@@ -1,14 +1,13 @@
-import { useState } from "react";
+"use client";
+
 import SearchBar from "../shared/search-bar";
 import PokemonList from "./PokemonList";
-import { NextPage } from "next";
 
 type PokemonSectionProps = {
   pokemonData: any;
 };
 
 const PokemonSearch = ({ pokemonData }: PokemonSectionProps) => {
-  // console.log(pokemonData);
   return (
     <>
       <div className="flex flex-col h-full w-full justify-center items-center p-12 self-end place-self-end overflow-y-scroll">

@@ -1,3 +1,5 @@
+"use client";
+
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../../styles/components/shared/search-bar.module.css";

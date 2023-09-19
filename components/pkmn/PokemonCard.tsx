@@ -1,8 +1,11 @@
+"use client";
+
 import { Card } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
 import NextImage from "next/image";
 import { PokemonType } from "pokenode-ts";
 import styles from "../../styles/components/shared/pokemonCard.module.css";
+import Link from "next/link";
 
 type PokemonCardProps = {
   name: string;
@@ -11,12 +14,7 @@ type PokemonCardProps = {
   types: PokemonType[];
 };
 
-const PokemonCard = ({
-  name = "MissingNo.",
-  number = 0,
-  picture = "No Picture",
-  types,
-}: PokemonCardProps) => {
+const PokemonCard = ({ name, number, picture, types }: PokemonCardProps) => {
   const processedPokemonTypes = [];
 
   console.log(types);
@@ -28,11 +26,13 @@ const PokemonCard = ({
         .toUpperCase()}${name.slice(1)}`}</h1>
       <span className="text-xl">{number}</span>
       <Image src={picture} width={230} height={230}></Image>
-      <div className="flex flex-row justify-center items-center">
+      <div className="flex flex-row justify-evenly">
         {types.map(({ type }, index) => {
           return (
             <p
-              className={`${styles[type.name]} text-sm  pl-3 pr-3`}
+              className={`${
+                styles[type.name]
+              } text-sm pl-3 pr-3 m-1 rounded-2xl`}
               key={index}
             >
               {type.name}
