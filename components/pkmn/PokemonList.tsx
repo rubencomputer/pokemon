@@ -1,3 +1,5 @@
+"use client";
+
 import { Card } from "@nextui-org/react";
 import PokemonCard from "./PokemonCard";
 import { Pokemon } from "pokenode-ts";
@@ -11,7 +13,7 @@ const PokemonList: React.FC<Props> = () => {
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-2 overflow-y-clip">
+      <div className="grid lg:grid-cols-3 grid-cols-2 md:gap-2 gap-6 overflow-y-clip">
         {Array.isArray(data) &&
           data.map((pkmn: Pokemon, index: number) => {
             return (

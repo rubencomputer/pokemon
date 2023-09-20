@@ -10,11 +10,16 @@ import { Button } from "@nextui-org/react";
 type searchBarProps = {
   onDataFromChild: Function;
   onSubmitFromChild: Function;
+  isDisabled: boolean;
 };
 
 //por ahora no tiene props.
 
-const SearchBar = ({ onDataFromChild, onSubmitFromChild }: searchBarProps) => {
+const SearchBar = ({
+  onDataFromChild,
+  onSubmitFromChild,
+  isDisabled = false,
+}: searchBarProps) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (e: any) => {
@@ -38,7 +43,8 @@ const SearchBar = ({ onDataFromChild, onSubmitFromChild }: searchBarProps) => {
     <Input
       radius="lg"
       onKeyDown={handleKeyBoardSubmit}
-      className={styles.searchBar}
+      className={`${styles.searchBar} w-full`}
+      isDisabled={isDisabled}
       classNames={{
         input: ["text-black", "placeholder:text-mainText/50 text-md "],
         innerWrapper: "bg-transparent w-full pr-0 mr-0 ",

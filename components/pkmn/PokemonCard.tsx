@@ -19,19 +19,19 @@ const PokemonCard = ({ name, number, picture, types }: PokemonCardProps) => {
   const processedPokemonTypes = [];
 
   return (
-    <Card className="m-3 p-12 h-128 flex flex-col items-center justify-center">
-      <h1 className="text-mainText font-bold text-2xl ">{`${firstUpperCase(
+    <Card className="md:m-3 md:p-16 sm:p-4 p-8 h-fit w-auto lg:h-128 flex flex-col items-center justify-center">
+      <h1 className="text-mainText font-bold md:text-2xl text-large ">{`${firstUpperCase(
         name
       )}`}</h1>
       <span className="text-xl">{number}</span>
-      <Image src={picture} width={230} height={230}></Image>
+      <Image src={picture} className="min-w-full"></Image>
       <div className="flex flex-row justify-evenly">
         {types.map(({ type }, index) => {
           return (
             <p
               className={`${
                 styles[type.name]
-              } text-sm pl-3 pr-3 m-1 rounded-2xl`}
+              } md:text-sm text-sm pl-3 pr-3 m-1 rounded-2xl`}
               key={index}
             >
               {firstUpperCase(type.name)}

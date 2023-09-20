@@ -6,7 +6,11 @@ import { useMyContext } from "@/providers/PokeContext";
 import { useRouter } from "next/router";
 import { Button, Link } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faArrowRight,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
 import { PageActionEnum } from "@/enums";
 
 export const Layout = ({ children }: any) => {
@@ -86,7 +90,7 @@ export const Layout = ({ children }: any) => {
               <Button
                 isIconOnly
                 isDisabled={Number(currentPage) <= 0 ? true : false}
-                className="p-4 m-4"
+                className="p-4 m-4 bg-mainDisabled text-white"
               >
                 <FontAwesomeIcon icon={faArrowLeft} />
               </Button>
@@ -108,41 +112,67 @@ export const Layout = ({ children }: any) => {
 
   //revisamos si el usuario esta en detalles o en 404 para mostrar el boton de back.
   const searchBarCheck = () => {
-    if (!router.asPath.split("/").includes("404"))
+    if (
+      router.asPath.split("/").includes("404") ||
+      router.asPath.split("/").includes("pkmn")
+    ) {
       return (
         <SearchBar
+          isDisabled={true}
           onDataFromChild={handleSearch}
           onSubmitFromChild={handleSubmit}
         />
       );
-
-    return;
+    } else {
+      return (
+        <SearchBar
+          isDisabled={false}
+          onDataFromChild={handleSearch}
+          onSubmitFromChild={handleSubmit}
+        />
+      );
+    }
   };
 
   return (
     <>
-      <div className={`flex min-h-screen flex-row justify-between`}>
+      <div className={`flex min-h-screen flex-col md:flex-row justify-between`}>
         {/* Lado Izquierdo */}
-        <Sidebar
-          userLevel={1}
-          userName="ASHK123"
-          userMotto="Work hard on your test"
-        ></Sidebar>
+        <div className="">
+          <div className="md:hidden absolute left-8 top-10 text-2xl">
+            <Link>
+              <Button isIconOnly className="bg-main text-3xl text-white">
+                <FontAwesomeIcon icon={faBars} />
+              </Button>
+            </Link>
+          </div>
+          <Sidebar
+            userLevel={1}
+            userName="ASHK123"
+            userMotto="Work hard on your test"
+          ></Sidebar>
+        </div>
         {/* Lado Derecho */}
         <div className="bg-white text-mainText w-full h-screen bg-gradient-to-b from-gradientStart to-gradientEnd">
-          <div className="flex flex-col h-full w-full justify-center items-center p-12 pt-6 pb-0 self-end place-self-end">
+          <div className="flex flex-col h-full w-full justify-center items-center md:p-12 p-6 md:pb-0 pb-6 self-end place-self-end">
             <div className="flex flex-row w-full pb-6">
               {/* Back Button */}
-              <div className="justify-start pl-3">{backButtonCheck()}</div>
+              <div className="md:justify-start md:pl-3 sm:mr-4 ">
+                {backButtonCheck()}
+              </div>
               {/* Search Bar */}
-              <div className="ml-auto">{searchBarCheck()}</div>
+              <div className="md:ml-auto w-full md:w-128">
+                {searchBarCheck()}
+              </div>
             </div>
             <div className="text-black w-full h-full overflow-y-scroll no-scrollbar">
               {children}
             </div>
+            <div className="flex fixed bottom-4 md:right-4">
+              {paginationCheck()}
+            </div>
           </div>
         </div>
-        <div className="flex fixed bottom-4 right-4">{paginationCheck()}</div>
       </div>
     </>
   );

@@ -19,8 +19,12 @@ const config: Config = {
       height: {
         "128": "32rem",
       },
+      width: {
+        "128": "420px",
+      },
       colors: {
         main: "#566CD6",
+        mainDisabled: "#3b4c9c",
         buttons: "#7789DF",
         mainText: "#40415E",
         gradientStart: "#F2F4FF",
