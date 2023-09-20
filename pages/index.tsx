@@ -5,6 +5,7 @@ import SearchBar from "@/components/shared/search-bar";
 import PokemonList from "@/components/pkmn/PokemonList";
 import { useState, useContext, useEffect } from "react";
 import { useMyContext } from "@/providers/PokeContext";
+import { useRouter } from "next/router";
 
 export const getServerSideProps = async () => {
   const api = new PokemonClient();
@@ -24,15 +25,14 @@ export const getServerSideProps = async () => {
   };
 };
 
-export default function Home({ detailedPokemonData }: any) {
+export default function Index({ detailedPokemonData }: any) {
   const { data, setData } = useMyContext();
-
+  const router = useRouter();
   useEffect(() => {
     setData(detailedPokemonData);
   }, []);
-
   return (
-    <div className="text-black w-full h-full">
+    <div className="text-mainText w-full h-full">
       <PokemonList />
     </div>
   );

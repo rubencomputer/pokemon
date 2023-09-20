@@ -4,16 +4,9 @@ import { Pokemon } from "pokenode-ts";
 import Link from "next/link";
 import { useMyContext } from "@/providers/PokeContext";
 
-type ListProps = {
-  listData?: any;
-};
+type Props = {};
 
-type pokemonData = {
-  name: string;
-  url: string;
-};
-
-const PokemonList = ({}: ListProps) => {
+const PokemonList: React.FC<Props> = () => {
   const { data } = useMyContext();
 
   return (
