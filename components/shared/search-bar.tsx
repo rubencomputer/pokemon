@@ -40,15 +40,20 @@ const SearchBar = ({ onDataFromChild, onSubmitFromChild }: searchBarProps) => {
       onKeyDown={handleKeyBoardSubmit}
       className={styles.searchBar}
       classNames={{
-        input: ["text-black/90", "placeholder:text-mainText/50"],
-        innerWrapper: "bg-transparent w-full pr-0 mr-0",
-        inputWrapper: ["shadow-sm", "pr-0"],
+        input: ["text-black", "placeholder:text-mainText/50 text-md "],
+        innerWrapper: "bg-transparent w-full pr-0 mr-0 ",
+        inputWrapper: [
+          "shadow-sm",
+          "pr-0",
+          "focus-within:border-2 focus-within:border-r-0 focus-within:border-main rounded-full",
+        ],
       }}
       placeholder="Search"
       endContent={
         <Button
           onPress={handleSubmit}
-          className="bg-main rounded-2xl text-white"
+          isIconOnly
+          className="bg-main text-white rounded-full text-xl w-20"
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </Button>
