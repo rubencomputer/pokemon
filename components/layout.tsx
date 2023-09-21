@@ -2,7 +2,7 @@ import { PokemonClient } from "pokenode-ts";
 import { useState } from "react";
 import { useMyContext } from "@/providers/PokeContext";
 import { useRouter } from "next/router";
-import { Button, Link } from "@nextui-org/react";
+import { Button, Link, Image } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -63,6 +63,7 @@ export const Layout = ({ children }: any) => {
             className="rounded-full bg-main text-white text-xl w-12 mr-4 "
             size="md"
           >
+            {/* Aqui si uso un icono de FontAwesome porque por alguna razón con una imagen, no la carga. */}
             <FontAwesomeIcon icon={faArrowLeft} />
           </Button>
         </Link>
@@ -89,16 +90,18 @@ export const Layout = ({ children }: any) => {
               <Button
                 isIconOnly
                 isDisabled={Number(currentPage) <= 0 ? true : false}
-                className="p-4 m-4 bg-mainDisabled text-white"
+                className="p-2 m-4 bg-mainDisabled text-white"
               >
-                <FontAwesomeIcon icon={faArrowLeft} />
+                {/* <FontAwesomeIcon icon={faArrowLeft} /> */}
+                <Image src="Back.svg" />
               </Button>
             </Link>
           </div>
           <div>
             <Link href={`/page/${Number(currentPage) + 1}`}>
-              <Button isIconOnly className="p-4 m-4 bg-main text-white">
-                <FontAwesomeIcon icon={faArrowRight} />
+              <Button isIconOnly className="p-2 m-4 bg-main text-white">
+                {/* <FontAwesomeIcon icon={faArrowRight} /> */}
+                <Image src="Back.svg" className="rotate-180" />
               </Button>
             </Link>
           </div>
@@ -113,7 +116,7 @@ export const Layout = ({ children }: any) => {
   const searchBarCheck = () => {
     if (
       router.asPath.split("/").includes("404") ||
-      router.asPath.split("/").includes("pkmn")
+      router.asPath.split("/").includes("pokemon")
     ) {
       return (
         <SearchBar

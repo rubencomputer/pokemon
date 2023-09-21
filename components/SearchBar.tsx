@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../styles/components/SearchBar.module.css";
 import { Input } from "@nextui-org/input";
 import { useState } from "react";
-import { Button } from "@nextui-org/react";
+import { Button, Image } from "@nextui-org/react";
 
 type SearchBarProps = {
   onDataFromChild: Function;
@@ -67,7 +67,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
           isIconOnly
           className="bg-main text-white rounded-full text-xl w-20"
         >
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <Image src="Search.svg" />
+          {/* <FontAwesomeIcon icon={faMagnifyingGlass} /> */}
         </Button>
       }
       onChange={handleInputChange}
