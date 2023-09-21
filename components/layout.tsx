@@ -92,16 +92,16 @@ export const Layout = ({ children }: any) => {
                 isDisabled={Number(currentPage) <= 0 ? true : false}
                 className="p-2 m-4 bg-mainDisabled text-white"
               >
-                {/* <FontAwesomeIcon icon={faArrowLeft} /> */}
-                <Image src="Back.svg" />
+                <FontAwesomeIcon icon={faArrowLeft} />
+                {/* <Image src="Back.svg" /> */}
               </Button>
             </Link>
           </div>
           <div>
             <Link href={`/page/${Number(currentPage) + 1}`}>
               <Button isIconOnly className="p-2 m-4 bg-main text-white">
-                {/* <FontAwesomeIcon icon={faArrowRight} /> */}
-                <Image src="Back.svg" className="rotate-180" />
+                <FontAwesomeIcon icon={faArrowRight} />
+                {/* <Image src="Back.svg" className="rotate-180" /> */}
               </Button>
             </Link>
           </div>
@@ -135,6 +135,8 @@ export const Layout = ({ children }: any) => {
       );
     }
   };
+
+  //
 
   return (
     <>

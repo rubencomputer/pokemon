@@ -67,8 +67,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
           isIconOnly
           className="bg-main text-white rounded-full text-xl w-20"
         >
-          <Image src="Search.svg" />
-          {/* <FontAwesomeIcon icon={faMagnifyingGlass} /> */}
+          {/* <Image src="Search.svg" /> */}
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
         </Button>
       }
       onChange={handleInputChange}

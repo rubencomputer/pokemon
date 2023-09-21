@@ -12,8 +12,8 @@ const LogOutButton: React.FC<LogOutProps> = ({}) => {
       radius="sm"
       className="w-full bg-buttons font-bold tracking-wide h-14"
       startContent={
-        // <FontAwesomeIcon icon={faRightFromBracket} rotation={180} />
-        <Image src="Logout.svg" />
+        <FontAwesomeIcon icon={faRightFromBracket} rotation={180} />
+        // <Image src="Logout.svg" />
       }
     >
       LOG OUT
