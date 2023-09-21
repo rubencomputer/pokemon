@@ -1,10 +1,7 @@
 "use client";
 
 import { Avatar, Image } from "@nextui-org/react";
-import LogOut from "./log-out";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faHamburger } from "@fortawesome/free-solid-svg-icons";
+import LogOut from "./LogOutButton";
 
 type SidebarProps = {
   userName: string;
@@ -13,12 +10,12 @@ type SidebarProps = {
   userAvatar?: string;
 };
 
-const Sidebar = ({
+const SideBar: React.FC<SidebarProps> = ({
   userName,
   userLevel,
   userMotto,
   userAvatar,
-}: SidebarProps) => {
+}) => {
   return (
     <div className="bg-main h-28 md:h-screen w-full basis-1/4 ">
       <div className="flex flex-row md:flex-col justify-center items-center w-full p-12 md:pt-6 md:pb-6 h-full ">
@@ -56,4 +53,4 @@ const Sidebar = ({
     </div>
   );
 };
-export default Sidebar;
+export default SideBar;

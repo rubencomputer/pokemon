@@ -1,8 +1,8 @@
 import { Inter } from "next/font/google";
-import Sidebar from "@/components/sidebar";
+import SideBar from "@/components/SideBar";
 import { PokemonClient } from "pokenode-ts";
-import SearchBar from "@/components/shared/search-bar";
-import PokemonList from "@/components/pkmn/PokemonList";
+import SearchBar from "@/components/SearchBar";
+import PokemonList from "@/components/pokemon/PokemonList";
 import { useState, useContext, useEffect } from "react";
 import { useMyContext } from "@/providers/PokeContext";
 import { useRouter } from "next/router";

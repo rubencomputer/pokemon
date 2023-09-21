@@ -2,12 +2,12 @@
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "../../styles/components/shared/search-bar.module.css";
+import styles from "../styles/components/SearchBar.module.css";
 import { Input } from "@nextui-org/input";
 import { useState } from "react";
 import { Button } from "@nextui-org/react";
 
-type searchBarProps = {
+type SearchBarProps = {
   onDataFromChild: Function;
   onSubmitFromChild: Function;
   isDisabled: boolean;
@@ -15,12 +15,14 @@ type searchBarProps = {
 
 //por ahora no tiene props.
 
-const SearchBar = ({
+const SearchBar: React.FC<SearchBarProps> = ({
   onDataFromChild,
   onSubmitFromChild,
   isDisabled = false,
-}: searchBarProps) => {
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
+
+  //Maneja el cambio del texto.
 
   const handleInputChange = (e: any) => {
     e.preventDefault();
@@ -28,10 +30,14 @@ const SearchBar = ({
     onDataFromChild(e);
   };
 
+  //maneja el submit al darle click.
+
   const handleSubmit = (e: any) => {
     if (searchTerm == "") return;
     onSubmitFromChild(searchTerm);
   };
+
+  //maneja el submit al presionar enter.
 
   const handleKeyBoardSubmit = (e: any) => {
     if (searchTerm == "") return;
@@ -47,11 +53,11 @@ const SearchBar = ({
       isDisabled={isDisabled}
       classNames={{
         input: ["text-black", "placeholder:text-mainText/50 text-md "],
-        innerWrapper: "bg-transparent w-full pr-0 mr-0 ",
+        innerWrapper: "bg-transparent w-full pr-0 ",
         inputWrapper: [
           "shadow-sm",
           "pr-0",
-          "focus-within:border-2 focus-within:border-r-0 focus-within:border-main rounded-full",
+          "focus-within:border-2 focus-within:border-r-0 focus-within:border-main rounded-full ",
         ],
       }}
       placeholder="Search"

@@ -1,12 +1,9 @@
 "use client";
 
 import { Card } from "@nextui-org/react";
-import PokemonCard from "./PokemonCard";
 import { Pokemon, PokemonType } from "pokenode-ts";
-import Link from "next/link";
-import SearchBar from "../shared/search-bar";
 import { Image } from "@nextui-org/react";
-import styles from "../../styles/components/shared/pokemonCard.module.css";
+import styles from "../../styles/components/PokemonCard.module.css";
 import { firstUpperCase } from "@/functions/useful_stuff";
 
 type PokemonDetailsProps = {
@@ -18,7 +15,6 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({
 }: any) => {
   return (
     <>
-      {/* <div className="flex flex-col h-full w-full justify-center items-center self-end place-self-end"> */}
       <div className="text-black w-full h-fit flex flex-col md:grid md:grid-cols-3 grid-cols-1 gap-2">
         <Card className="m-3 p-12 h-auto md:h-128">
           <div className="flex flex-col justify-center items-center h-full">
@@ -98,7 +94,6 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({
           </div>
         </Card>
       </div>
-      {/* </div> */}
     </>
   );
 };

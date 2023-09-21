@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/react";
 
 type LogOutProps = {};
 
-const LogOut = (props: LogOutProps) => {
+const LogOutButton: React.FC<LogOutProps> = ({}) => {
   return (
     <Button
       color="primary"
@@ -20,4 +20,4 @@ const LogOut = (props: LogOutProps) => {
   );
 };
 
-export default LogOut;
+export default LogOutButton;

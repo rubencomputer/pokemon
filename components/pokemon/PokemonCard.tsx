@@ -2,20 +2,23 @@
 
 import { Card } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
-import NextImage from "next/image";
 import { PokemonType } from "pokenode-ts";
-import styles from "../../styles/components/shared/pokemonCard.module.css";
-import Link from "next/link";
+import styles from "../../styles/components/PokemonCard.module.css";
 import { firstUpperCase } from "@/functions/useful_stuff";
 
 type PokemonCardProps = {
   name: string;
   number: number | string;
-  picture: string | null | undefined;
+  picture: string | any;
   types: PokemonType[];
 };
 
-const PokemonCard = ({ name, number, picture, types }: PokemonCardProps) => {
+const PokemonCard: React.FC<PokemonCardProps> = ({
+  name,
+  number,
+  picture,
+  types,
+}) => {
   const processedPokemonTypes = [];
 
   return (

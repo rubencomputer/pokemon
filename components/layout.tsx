@@ -1,5 +1,3 @@
-import Sidebar from "./sidebar";
-import SearchBar from "./shared/search-bar";
 import { PokemonClient } from "pokenode-ts";
 import { useState } from "react";
 import { useMyContext } from "@/providers/PokeContext";
@@ -11,14 +9,15 @@ import {
   faArrowRight,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import { PageActionEnum } from "@/enums";
+import SideBar from "./SideBar";
+import SearchBar from "./SearchBar";
 
 export const Layout = ({ children }: any) => {
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
   const { setData } = useMyContext();
 
-  let currentPage: any = router.query.offset;
+  let currentPage: any | string = router.query.offset;
 
   if (!currentPage) {
     currentPage = 0;
@@ -34,6 +33,7 @@ export const Layout = ({ children }: any) => {
     const pokeApi = new PokemonClient();
 
     try {
+      //verificamos que puso en la busqueda, si el nombre o un id.
       if (isNaN(Number(searchTerm))) {
         const response = await pokeApi.getPokemonByName(
           searchTerm.toLowerCase()
@@ -55,14 +55,14 @@ export const Layout = ({ children }: any) => {
   //revisamos si el usuario esta en detalles o en 404 para mostrar el boton de back.
   const backButtonCheck = () => {
     if (
-      router.asPath.split("/").includes("pkmn") ||
+      router.asPath.split("/").includes("pokemon") ||
       router.asPath.split("/").includes("404")
     )
       return (
         <Link href="/">
           <Button
             isIconOnly
-            className="rounded-full bg-main text-white text-xl w-12 "
+            className="rounded-full bg-main text-white text-xl w-12 mr-4 "
             size="md"
           >
             <FontAwesomeIcon icon={faArrowLeft} />
@@ -73,9 +73,10 @@ export const Layout = ({ children }: any) => {
     return;
   };
 
+  //revisamos si el usuario esta en una pagina donde se pueda usar la paginacion para renderizarlo.
   const paginationCheck = () => {
     if (
-      router.asPath.split("/").includes("pkmn") ||
+      router.asPath.split("/").includes("pokemon") ||
       router.asPath.split("/").includes("404")
     ) {
       return <></>;
@@ -84,7 +85,7 @@ export const Layout = ({ children }: any) => {
         <>
           <div>
             <Link
-              href={`/${Number(currentPage) - 1}`}
+              href={`/page/${Number(currentPage) - 1}`}
               isDisabled={Number(currentPage) <= 0 ? true : false}
             >
               <Button
@@ -97,7 +98,7 @@ export const Layout = ({ children }: any) => {
             </Link>
           </div>
           <div>
-            <Link href={`/${Number(currentPage) + 1}`}>
+            <Link href={`/page/${Number(currentPage) + 1}`}>
               <Button isIconOnly className="p-4 m-4 bg-main text-white">
                 <FontAwesomeIcon icon={faArrowRight} />
               </Button>
@@ -146,11 +147,11 @@ export const Layout = ({ children }: any) => {
               </Button>
             </Link>
           </div>
-          <Sidebar
+          <SideBar
             userLevel={1}
             userName="ASHK123"
             userMotto="Work hard on your test"
-          ></Sidebar>
+          ></SideBar>
         </div>
         {/* Lado Derecho */}
         <div className="bg-white text-mainText w-full h-screen bg-gradient-to-b from-gradientStart to-gradientEnd">
@@ -161,7 +162,7 @@ export const Layout = ({ children }: any) => {
                 {backButtonCheck()}
               </div>
               {/* Search Bar */}
-              <div className="md:ml-auto w-full md:w-128">
+              <div className="md:ml-auto w-full  md:w-128">
                 {searchBarCheck()}
               </div>
             </div>

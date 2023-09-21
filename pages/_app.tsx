@@ -1,4 +1,4 @@
-import { Layout } from "@/components/layout";
+import { Layout } from "@/components/Layout";
 import { MyContextProvider } from "@/providers/PokeContext";
 import "@/styles/globals.css";
 import { NextUIProvider } from "@nextui-org/react";
