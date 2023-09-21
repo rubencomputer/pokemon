@@ -38,11 +38,9 @@ export const Layout = ({ children }: any) => {
         const response = await pokeApi.getPokemonByName(
           searchTerm.toLowerCase()
         );
-        console.log(response);
         setData([response]);
       } else {
         const response = await pokeApi.getPokemonById(Number(searchTerm));
-        console.log(response);
         setData([response]);
       }
     } catch (e: any) {
